@@ -1,0 +1,76 @@
+---
+language: python
+python: "2.7"
+
+sudo: required
+
+# Use the docker for testing
+services:
+  - docker
+
+# Install ansible
+addons:
+  apt:
+    packages:
+    - python-pip
+
+install:
+  # Install ansible
+  - pip install ansible
+
+  # Check ansible version
+  - ansible --version
+
+  # Install python module and role dependencies
+  - test ! -f requirements.txt || pip install -r requirements.txt
+  - test ! -f requirements.yml || ansible-galaxy install -p tests/roles -r requirements.yml
+
+  # Create ansible.cfg with correct roles_path
+  - printf '[defaults]\nroles_path=../' >ansible.cfg
+
+  # create ssh key, cleanup host fingerprints
+  - ssh-keygen -N '' -f ~/.ssh/id_rsa
+  - echo >~/.ssh/known_hosts
+
+  # build test image
+  - docker build -t ansible-test tests
+
+  # Start alpine sshd containers for testing
+
+  # - listen on localhost:4848
+  - docker rm -f alpine-sshd-4848 || true
+  - docker run -p 4848:22 --name alpine-sshd-4848 --hostname alpine-sshd-4848 -d ansible-test /usr/sbin/sshd -D
+
+  # - listen on localhost:5848
+  - docker rm -f alpine-sshd-5848 || true
+  - docker run -p 5848:22 --name alpine-sshd-5848 --hostname alpine-sshd-5848 -d ansible-test /usr/sbin/sshd -D
+
+  # - listen on localhost:6848
+  # - add userA; enable sudo without passowrd
+  # - enable pubkey login
+  - docker rm -f alpine-sshd-6848 || true
+  - docker run -p 6848:22 --name alpine-sshd-6848 --hostname alpine-sshd-6848 -d ansible-test /usr/sbin/sshd -D
+  - docker exec -i alpine-sshd-6848 sh -c 'echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/wheel'
+
+  # - listen on localhost:7848
+  # - disable pubkey login
+  - docker rm -f alpine-sshd-7848 || true
+  - docker run -p 7848:22 --name alpine-sshd-7848 --hostname alpine-sshd-7848 -d ansible-test sh -c 'echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config && exec /usr/sbin/sshd -D'
+
+  # - listen on localhost:8848
+  # - add userA; enable sudo with password
+  # - disable pubkey login
+  - docker rm -f alpine-sshd-8848 || true
+  - docker run -p 8848:22 --name alpine-sshd-8848 --hostname alpine-sshd-8848 -d ansible-test sh -c 'echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config && exec /usr/sbin/sshd -D'
+  - docker exec -i alpine-sshd-8848 sh -c 'echo "%wheel ALL=(ALL) ALL" >/etc/sudoers.d/wheel'
+
+  - sleep 5s
+
+script:
+  # Basic role syntax check
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+
+  - ansible-playbook tests/test.yml -i tests/inventory
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

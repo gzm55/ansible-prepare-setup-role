@@ -1,0 +1,24 @@
+[prepare]
+pubkU4 ansible_port=4848 ansible_user=userA
+pubkR5 ansible_port=5848 ansible_user=root
+pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True
+passR7 ansible_port=7848 ansible_user=root  ansible_pubkey_login_is_disabled=True
+passB8 ansible_port=8848 ansible_user=userA ansible_pubkey_login_is_disabled=True ansible_become=True ansible_become_pass=123456
+
+[prepare:vars]
+ansible_ssh_pass=123456
+
+[setup-pubkey]
+pubkU4 ansible_port=4848 ansible_user=userA
+pubkR5 ansible_port=5848 ansible_user=root
+pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True
+
+[setup-pass]
+passR7 ansible_port=7848 ansible_user=root
+passB8 ansible_port=8848 ansible_user=userA ansible_become=True ansible_become_pass=123456
+
+[setup-pass:vars]
+ansible_ssh_pass=123456
+
+[all:vars]
+ansible_host=localhost
