@@ -1,7 +1,6 @@
 ---
 - hosts: prepare
   gather_facts: False
-  serial: 2
   roles:
   - ansible-prepare-setup-role/
 
