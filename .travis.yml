@@ -50,7 +50,7 @@ install:
   # - enable pubkey login
   - docker rm -f alpine-sshd-6848 || true
   - docker run -p 6848:22 --name alpine-sshd-6848 --hostname alpine-sshd-6848 -d ansible-test /usr/sbin/sshd -D
-  - docker exec -i alpine-sshd-6848 sh -c 'echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/wheel'
+  - docker exec -i alpine-sshd-6848 sh -c 'echo "%wheel ALL=(ALL) NOPASSWD:"\ ALL >/etc/sudoers.d/wheel'
 
   # - listen on localhost:7848
   # - disable pubkey login
