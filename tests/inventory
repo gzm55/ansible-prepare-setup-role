@@ -1,7 +1,7 @@
 [prepare]
 pubkU4 ansible_port=4848 ansible_user=userA
 pubkR5 ansible_port=5848 ansible_user=root
-pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True ansible_connection=docker ansible_host=alpine-sshd-5848
+pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True ansible_connection=docker ansible_host=alpine-sshd-6848
 passR7 ansible_port=7848 ansible_user=root  ansible_pubkey_login_is_disabled=True
 passB8 ansible_port=8848 ansible_user=userA ansible_pubkey_login_is_disabled=True ansible_become=True ansible_become_pass=123456
 
@@ -11,7 +11,7 @@ ansible_ssh_pass=123456
 [setup-pubkey]
 pubkU4 ansible_port=4848 ansible_user=userA
 pubkR5 ansible_port=5848 ansible_user=root
-pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True ansible_connection=docker ansible_host=alpine-sshd-5848
+pubkB6 ansible_port=6848 ansible_user=userA ansible_become=True ansible_connection=docker ansible_host=alpine-sshd-6848
 
 [setup-pass]
 passR7 ansible_port=7848 ansible_user=root
