@@ -6,13 +6,16 @@ Do bootstrap works for running setup module. This will deal with ssh key, instal
 Requirements
 ------------
 
-ansible>=2.2
+By merge requirements of all dependent roles, the control machine needs:
+
+- `ansible>=2.2`
+- `jinja2>=2.7`
+- `pexpect>=3.3`
 
 Role Variables
 --------------
 
-- `ansible_pubkey_login_is_disabled`, default is False, if set to True,
-      this role skips install pubkey to remote machines, and have to login via password.
+- `ansible_pubkey_login_is_disabled`, inherited from the role `gzm55.ssh_pubkey_login`, default is False.
 
 Dependencies
 ------------

@@ -1,3 +1,0 @@
----
-- ping:
-  when: detect_installed_python | skipped

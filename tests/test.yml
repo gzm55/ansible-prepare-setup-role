@@ -6,8 +6,10 @@
 
 - hosts: setup-pubkey
   tasks:
-  - debug:
+  - name: pubkey is ready
+    debug: msg="pubkey is ready"
 
 - hosts: setup-pass
   tasks:
-  - debug:
+  - name: pass is ready
+    debug: msg="pass is ready"
