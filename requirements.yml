@@ -7,6 +7,6 @@
 - src: gzm55.ssh_pubkey_login
   version: 1.0.0
 - src: gzm55.smart_ssh_pipelining
-  version: 1.0.1
+  version: 1.0.2
 - src: gzm55.python_module_bootstrap
   version: 1.0.0
