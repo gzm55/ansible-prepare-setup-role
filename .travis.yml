@@ -18,7 +18,8 @@ addons:
 
 install:
   # Install ansible
-  - pip install ansible ansible-lint
+  - pip install -r requirements.txt
+  - pip install ansible-lint
 
   # Check ansible version
   - ansible --version

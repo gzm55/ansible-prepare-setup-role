@@ -8,7 +8,7 @@ Requirements
 
 By merge requirements of all dependent roles, the control machine needs:
 
-- `ansible>=2.2`
+- `ansible>=2.2,<2.5`
 - `jinja2>=2.7`
 - `pexpect>=3.3`
 

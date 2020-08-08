@@ -4,12 +4,12 @@
   roles:
   - ansible-prepare-setup-role/
 
-- hosts: setup-pubkey
+- hosts: setup_pubkey
   tasks:
   - name: pubkey is ready
     debug: msg="pubkey is ready"
 
-- hosts: setup-pass
+- hosts: setup_pass
   tasks:
   - name: pass is ready
     debug: msg="pass is ready"
