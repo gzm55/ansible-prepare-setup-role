@@ -1,4 +1,4 @@
-prepare_setup (0.0.1-dev)
+prepare_setup (1.0.0-dev)
 =========================
 
 Do bootstrap works for running setup module. This will deal with ssh key, install python and so on.
@@ -8,7 +8,7 @@ Requirements
 
 By merge requirements of all dependent roles, the control machine needs:
 
-- `ansible>=2.2,<2.5`
+- `ansible>=2.7`
 - `jinja2>=2.7`
 - `pexpect>=3.3`
 

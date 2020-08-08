@@ -1,12 +1,12 @@
 - src: gzm55.reachable
-  version: 0.0.1
+  version: 1.0.1
 - src: gzm55.local_openssh_client_permission
-  version: 0.0.2
+  version: 1.0.0
 - src: gzm55.local_ssh_known_hosts
-  version: 0.0.3
+  version: 1.0.1
 - src: gzm55.ssh_pubkey_login
-  version: 0.0.1
+  version: 1.0.0
 - src: gzm55.smart_ssh_pipelining
-  version: 0.0.1
+  version: 1.0.1
 - src: gzm55.python_module_bootstrap
   version: 1.0.0
