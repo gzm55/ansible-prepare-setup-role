@@ -17,15 +17,14 @@ addons:
     - sshpass
 
 install:
-  # Install ansible
-  - pip install -r requirements.txt
+  # Install ansible and python module
+  - test ! -f requirements.txt || pip install -r requirements.txt
   - pip install ansible-lint
 
   # Check ansible version
   - ansible --version
 
-  # Install python module and role dependencies
-  - test ! -f requirements.txt || pip install -r requirements.txt
+  # Install role dependencies
   - test ! -f requirements.yml || ansible-galaxy install -p tests/roles -r requirements.yml
 
   # Create ansible.cfg with correct roles_path
