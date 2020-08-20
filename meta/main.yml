@@ -21,14 +21,12 @@ galaxy_info:
 
 allow_duplicates: no
 dependencies:
-- role: gzm55.reachable
-  version: 1.0.1
 - role: gzm55.local_openssh_client_permission
-  version: 1.0.0
-- role: gzm55.local_ssh_known_hosts
   version: 1.0.1
+- role: gzm55.local_ssh_known_hosts
+  version: 1.0.2
 - role: gzm55.ssh_pubkey_login
-  version: 1.0.0
+  version: 1.0.1
   when: not ansible_pubkey_login_is_disabled
 - role: gzm55.smart_ssh_pipelining
   version: 1.0.2
