@@ -1,4 +1,4 @@
-prepare_setup (1.0.3-dev)
+prepare_setup (1.0.3)
 =========================
 
 Do bootstrap works for running setup module. This will deal with ssh key, install python and so on.
@@ -20,7 +20,6 @@ Role Variables
 Dependencies
 ------------
 
-- `gzm55.reachable`
 - `gzm55.local_openssh_client_permission`
 - `gzm55.local_ssh_known_hosts`
 - `gzm55.ssh_pubkey_login`
