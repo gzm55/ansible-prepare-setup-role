@@ -1,4 +1,4 @@
-prepare_setup (1.0.5)
+prepare_setup (1.0.6-dev)
 =========================
 
 Do bootstrap works for running setup module. This will deal with ssh key, install python and so on.
