@@ -7,4 +7,4 @@
 - src: gzm55.smart_ssh_pipelining
   version: 1.0.2
 - src: gzm55.python_module_bootstrap
-  version: 1.0.0
+  version: 1.0.1
