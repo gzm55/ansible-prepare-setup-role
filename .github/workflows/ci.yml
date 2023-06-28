@@ -66,13 +66,11 @@ jobs:
         docker exec -i alpine-sshd-8848 sh -c 'echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config'
         docker exec -i alpine-sshd-8848 sh -c 'echo "%wheel ALL=(ALL) ALL" >/etc/sudoers.d/wheel'
 
-        sleep 3s
-
     - name: syntax check
       run: ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
     - name: TEST
-      run: ansible-playbook tests/test.yml -i tests/inventory -vvvvv -l pubkU4
+      run: ansible-playbook tests/test.yml -i tests/inventory
 
   lint-job:
     name: lint codes
