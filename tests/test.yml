@@ -1,15 +1,18 @@
 ---
-- hosts: prepare
+- name: Test this role
+  hosts: prepare
   gather_facts: False
   roles:
-  - ansible-prepare-setup-role/
+  - ansible-prepare-setup-role
 
-- hosts: setup_pubkey
+- name: Say ok for pubkey hosts
+  hosts: setup_pubkey
   tasks:
   - name: pubkey is ready
-    debug: msg="pubkey is ready"
+    ansible.builtin.debug: msg="pubkey is ready"
 
-- hosts: setup_pass
+- name: Say ok for password hosts
+  hosts: setup_pass
   tasks:
   - name: pass is ready
-    debug: msg="pass is ready"
+    ansible.builtin.debug: msg="pass is ready"
