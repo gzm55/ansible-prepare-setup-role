@@ -8,11 +8,13 @@
 - name: Say ok for pubkey hosts
   hosts: setup_pubkey
   tasks:
-  - name: pubkey is ready
-    ansible.builtin.debug: msg="pubkey is ready"
+  - name: Pubkey is ready
+    ansible.builtin.debug:
+      msg: "pubkey is ready"
 
 - name: Say ok for password hosts
   hosts: setup_pass
   tasks:
-  - name: pass is ready
-    ansible.builtin.debug: msg="pass is ready"
+  - name: Pass is ready
+    ansible.builtin.debug:
+      msg: "pass is ready"
