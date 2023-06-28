@@ -36,6 +36,7 @@ jobs:
 
     - name: prepare containers for testing
       run: |
+        set -x
         # build test image
         docker build -t ansible-test tests
 
@@ -54,7 +55,6 @@ jobs:
 
         # listen on localhost:7848
         # - disable pubkey login
-        docker rm -f alpine-sshd-7848 || true
         docker run -p 7848:22 --name alpine-sshd-7848 --hostname alpine-sshd-7848 -d ansible-test
         docker exec -i alpine-sshd-7848 sh -c 'echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config'
 
@@ -65,12 +65,13 @@ jobs:
         docker exec -i alpine-sshd-8848 sh -c 'echo "PubkeyAuthentication no" >> /etc/ssh/sshd_config'
         docker exec -i alpine-sshd-8848 sh -c 'echo "%wheel ALL=(ALL) ALL" >/etc/sudoers.d/wheel'
 
+        sleep 3s
+
     - name: syntax check
       run: ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
-    - name: TEST - TODO
-      run: |
-        "false"
+    - name: TEST
+      run: ansible-playbook tests/test.yml -i tests/inventory
 
   lint-job:
     name: lint codes
@@ -79,12 +80,13 @@ jobs:
     - uses: actions/checkout@v3
     - name: prepare lint
       run: |
+        set -x
         pip3 install -r requirements.txt
         ansible-galaxy install -p tests/roles -r requirements.yml
         pip3 install ansible-lint
         ansible-lint --version
     - name: lint
-      run: ansible-lint --show-relpath
+      run: ansible-lint --show-relpath --exclude tests/roles
 
   deploy-job:
     name: deploy the role on tag
