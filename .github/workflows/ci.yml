@@ -71,7 +71,7 @@ jobs:
       run: ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
     - name: TEST
-      run: ansible-playbook tests/test.yml -i tests/inventory
+      run: ansible-playbook tests/test.yml -i tests/inventory -vvvvv -l pubkU4
 
   lint-job:
     name: lint codes
