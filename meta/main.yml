@@ -30,4 +30,4 @@ dependencies:
 - role: gzm55.smart_ssh_pipelining
   version: 2.0.0
 - role: gzm55.python_module_bootstrap
-  version: 2.0.0
+  version: 2.0.1
